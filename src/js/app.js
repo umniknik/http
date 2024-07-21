@@ -1,26 +1,26 @@
 import HelpDesk from './HelpDesk';
-import TicketView from './ticketview.js';
+import TicketService from './TicketService';
+import TicketForm from './TicketForm';
+
 
 const root = document.getElementById('root');
 
 const app = new HelpDesk(root);
 
-// Получить массив тикетов с сервера
-fetch('http://localhost:7070/?method=allTickets')
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Ошибка при получении тикетов');
-    }
-  })
-  .then(tickets => {
-    // Создать объект TicketView
-    const ticketView = new TicketView();
+//Выводим кнопку "добавить тикет"
+const addTicketButton = document.createElement('button');
+    addTicketButton.textContent = 'Добавить тикет';
+    addTicketButton.addEventListener('click', () => {
+      
+      ticketForm.createPopupWindow();  //запускаем метод создания формы
+    });
+root.appendChild(addTicketButton);
 
-    // Создать таблицу тикетов
-    const table = ticketView.createTicketTable(tickets);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+const ticketForm = new TicketForm();
+
+
+
+//Выводим таблицу
+const ticketService = new TicketService();
+ticketService.list();
+

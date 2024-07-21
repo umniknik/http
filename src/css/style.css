@@ -1,0 +1,106 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 50vh;
+    margin: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn {
+    width: 8rem;
+    height: 3rem;
+    background-color: rgb(130, 150, 55);
+    border-radius: 10px;
+    color: azure;
+    position: relative;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-left {
+    align-self: flex-start;
+}
+
+.btn-right {
+    align-self: flex-end;
+}
+
+.popuper {
+    width: 10rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: rgb(247, 246, 246);
+    /* position: absolute; */
+    position: fixed;
+    z-index: 100;
+    top: 10%;
+    left: 45%;
+}
+
+.popuper-title {
+    padding: 0.2rem;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: medium;
+    font-weight: bold;
+    background-color: lightgray;
+    border-bottom: 1px solid grey;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.popuper-content {
+    padding: 0.2rem;
+    font-size: small;
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+.description {
+    display: block;
+}
+
+.editBtn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.editBtn:hover {
+    background-color: #0056b3;
+}
+
+.editBtn i {
+    font-size: 18px;
+}
+
+table tr td:nth-child(1),
+table tr th:nth-child(1) {
+    display: none;
+}
+
+table tr td:nth-child(4),
+table tr th:nth-child(4) {
+    display: none;
+}
