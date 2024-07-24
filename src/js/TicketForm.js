@@ -50,9 +50,9 @@ export default class TicketForm {
         status: false
       };
 
-      // Отправить данные тикета на сервер
       const ticketService = new TicketService();
       ticketService.create(newTicket);
+
       // ...
       popup.remove();
     });
@@ -107,7 +107,7 @@ export default class TicketForm {
     okButton.textContent = 'ОК';
     okButton.classList.add('btn');
     okButton.addEventListener('click', () => {
-      
+
       //формируем данные тикета
       const newTicket = {
         name: shortDescriptionInput.value,

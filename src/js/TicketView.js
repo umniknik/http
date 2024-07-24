@@ -31,17 +31,24 @@ export default class TicketView {
       tableDataCells.forEach(cell => {
 
         const td = document.createElement('td');
-        if (cell === false) {
+        if (cell === false || cell === true) {
           // Создать кнопки "Статус - сделано - не сделано"
           const statusButton = document.createElement('button');
-          statusButton.textContent = '✔'
+          if (cell === true) {
+            statusButton.textContent = '✔';
+          }
           statusButton.classList.add('editBtn');
           statusButton.dataset.id = ticket.id;
           statusButton.addEventListener('click', () => {
             //открытие формы редактирования тикета
             const ticketForm = new TicketForm();
             const ticketId = event.target.dataset.id; // Получаем ID тикета из атрибута data-id
-            ticketForm.updatePopupWindow(ticketId);
+            //формируем данные которые необходимо будет обновить у данного тикета
+            const data = {
+              status: true
+            }
+            const ticketService = new TicketService();
+            ticketService.update(ticketId, data);  //отправляем данные для обновления на сервер
           });
           td.appendChild(statusButton);
           tableRow.appendChild(td);
@@ -72,18 +79,6 @@ export default class TicketView {
           const ticketId = tableRow.querySelector('td:first-child').textContent.trim(); //берем id тикета из первой ячейки
           const ticketService = new TicketService();
           ticketService.get(ticketId); // отправляем запрос на получение информации о кликнутом тикете
-          
-          // =========== Здесь я пытался получить тикет зерез сервис get, но выходило undefined((( не знаю в чем дело ============
-          // ticketService.get(ticketId).then(ticket => {
-          //   console.log(ticket);
-          // });// отправляем запрос на получение информации о кликнутом тикете
-          // const ticket = await ticketService.get(ticketId);
-          // console.log(ticket);
-          // ticketService.get(ticketId).then(ticket => {
-          //   console.log(ticket);
-          // });
-          // const ticket = await ticketService.get(ticketId);
-          // console.log(ticket);
         }
 
       });
@@ -159,7 +154,6 @@ export default class TicketView {
     // Перебираем строки таблицы
     for (const row of tableRows) {
       // Получаем данные из текущей строки
-      //const id = row.getAttribute("data-id");
       const dateCell = row.querySelector("td:nth-child(5)");
       const dateValue = dateCell.textContent;
 
@@ -169,5 +163,9 @@ export default class TicketView {
       // Обновляем содержимое ячейки с датой
       dateCell.textContent = formattedDate;
     }
+  }
+
+  showMeTiket(oneTiket) {
+    console.log(oneTiket);
   }
 }
